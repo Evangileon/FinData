@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="FinData">
+</Property><Property Name="解决方案文件" Value="D:\FinDataToolsSource\FinData\FinData.sln">
+</Property><Property Name="Date" Value="2008年9月25日">
+</Property><Property Name="Time" Value="17:50">
+</Property></Properties><Event ErrorLevel="0" Project="FinData" Source="FinData\FinData.csproj" Description="项目已成功转换">
+</Event><Event ErrorLevel="3" Project="FinData" Source="FinData\FinData.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="FinDataTools" Source="FinData.Tools\FinDataTools.csproj" Description="项目已成功转换">
+</Event><Event ErrorLevel="3" Project="FinDataTools" Source="FinData.Tools\FinDataTools.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Fxj2txt" Source="Fxj2txt\Fxj2txt.csproj" Description="项目已成功转换">
+</Event><Event ErrorLevel="3" Project="Fxj2txt" Source="Fxj2txt\Fxj2txt.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="FinData.sln" Description="成功转换解决方案">
+</Event><Event ErrorLevel="3" Project="" Source="FinData.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="FinData" Source="FinData\FinData.csproj" Description="扫描完成: 项目文件不需要升级。">
+</Event><Event ErrorLevel="0" Project="FinDataTools" Source="FinData.Tools\FinDataTools.csproj" Description="扫描完成: 项目文件不需要升级。">
+</Event><Event ErrorLevel="0" Project="Fxj2txt" Source="Fxj2txt\Fxj2txt.csproj" Description="扫描完成: 项目文件不需要升级。">
+</Event></UpgradeLog>
