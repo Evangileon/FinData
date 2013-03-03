@@ -1,0 +1,49 @@
+<VisualStudioProject>
+  <CSHARP ProjectType="Local" ProductVersion="7.10.3077" SchemaVersion="2.0" ProjectGuid="D9955DE4-3778-4945-A58C-8595C9705D5B">
+    <Build>
+      <Settings ApplicationIcon="" AssemblyKeyContainerName="" AssemblyName="LuaInterface" AssemblyOriginatorKeyFile="" DefaultClientScript="JScript" DefaultHTMLPageLayout="Grid" DefaultTargetSchema="IE50" DelaySign="false" OutputType="Library" PreBuildEvent="" PostBuildEvent="" RootNamespace="LuaInterface" RunPostBuildEvent="OnBuildSuccess" StartupObject="">
+        <Config Name="Debug" AllowUnsafeBlocks="false" BaseAddress="285212672" CheckForOverflowUnderflow="false" ConfigurationOverrideFile="" DefineConstants="DEBUG;TRACE" DocumentationFile="" DebugSymbols="true" FileAlignment="4096" IncrementalBuild="false" NoStdLib="false" NoWarn="" Optimize="false" OutputPath="bin\Debug\" RegisterForComInterop="false" RemoveIntegerChecks="false" TreatWarningsAsErrors="false" WarningLevel="4" />
+        <Config Name="Release" AllowUnsafeBlocks="false" BaseAddress="285212672" CheckForOverflowUnderflow="false" ConfigurationOverrideFile="" DefineConstants="TRACE" DocumentationFile="" DebugSymbols="false" FileAlignment="4096" IncrementalBuild="false" NoStdLib="false" NoWarn="" Optimize="true" OutputPath="bin\Release\" RegisterForComInterop="false" RemoveIntegerChecks="false" TreatWarningsAsErrors="false" WarningLevel="4" />
+      </Settings>
+      <References>
+        <Reference Name="mscorlib" AssemblyName="mscorlib" HintPath="mscorlib.dll" />
+        <Reference Name="lua51" AssemblyName="lua51" HintPath="lua51.dll" />
+        <Reference Name="System" AssemblyName="System" HintPath="System.dll" />
+      </References>
+    </Build>
+    <Files>
+      <Include>
+        <File RelPath="AssemblyInfo.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\LuaClassType.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\ILuaGeneratedType.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\DelegateGenerator.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\ClassGenerator.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\CodeGeneration.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\LuaBase.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\LuaUserData.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\MethodCache.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\MethodArgs.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\ExtractValue.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\LuaMethodWrapper.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\EventHandlerContainer.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\RegisterEventHandler.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\LuaEventHandler.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\LuaDelegate.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\LuaClassHelper.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\CheckType.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\ObjectTranslator.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\ProxyType.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\LuaException.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\LuaFunction.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\MetaFunctions.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\LuaTable.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\Lua.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\EventCodes.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\EventMasks.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\LuaDebug.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\DebugHookEventArgs.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LuaInterface\HookExceptionEventArgs.cs" SubType="Code" BuildAction="Compile" />
+      </Include>
+    </Files>
+  </CSHARP>
+</VisualStudioProject>

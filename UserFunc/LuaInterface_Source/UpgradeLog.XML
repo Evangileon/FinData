@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="LuaInterface">
+</Property><Property Name="解决方案文件" Value="C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\LuaInterface.sln">
+</Property><Property Name="Date" Value="2013年3月4日">
+</Property><Property Name="Time" Value="0:02:46">
+</Property></Properties><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface.csproj" Description="项目文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface.csproj">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="AssemblyInfo.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\CheckType.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\CheckType.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\ClassGenerator.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\ClassGenerator.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\CodeGeneration.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\CodeGeneration.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\DebugHookEventArgs.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\DebugHookEventArgs.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\DelegateGenerator.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\DelegateGenerator.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\EventCodes.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\EventCodes.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\EventHandlerContainer.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\EventHandlerContainer.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\EventMasks.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\EventMasks.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\ExtractValue.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\ExtractValue.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\HookExceptionEventArgs.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\HookExceptionEventArgs.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\ILuaGeneratedType.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\ILuaGeneratedType.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\Lua.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\Lua.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\LuaBase.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\LuaBase.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\LuaClassHelper.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\LuaClassHelper.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\LuaClassType.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\LuaClassType.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\LuaDebug.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\LuaDebug.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\LuaDelegate.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\LuaDelegate.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\LuaEventHandler.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\LuaEventHandler.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\LuaException.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\LuaException.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\LuaFunction.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\LuaFunction.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\LuaMethodWrapper.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\LuaMethodWrapper.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\LuaTable.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\LuaTable.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\LuaUserData.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\LuaUserData.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\MetaFunctions.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\MetaFunctions.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\MethodArgs.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\MethodArgs.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\MethodCache.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\MethodCache.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\ObjectTranslator.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\ObjectTranslator.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\ProxyType.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\ProxyType.cs">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface\RegisterEventHandler.cs" Description="文件已成功备份为 C:\Users\yj\Desktop\FinData1.0\UserFunc\LuaInterface_Source\Backup\LuaInterface\RegisterEventHandler.cs">
+</Event><Event ErrorLevel="1" Project="LuaInterface" Source="LuaInterface.csproj" Description="您的项目以 .NET Framework 2.0 或 3.0 为目标。如果您的项目使用的程序集需要更新的 .NET Framework，则项目生成将失败。通过单击项目菜单上的“属性”，然后在“.NET Framework”下拉框中选择一个新版本，可以更改 .NET Framework 的版本。(在 Visual Basic 中，可在单击“高级编辑器选项...”按钮时显示的“编译”选项卡上找到此下拉框。)">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface.csproj" Description="项目已成功转换">
+</Event><Event ErrorLevel="3" Project="LuaInterface" Source="LuaInterface.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="LuaInterface" Source="LuaInterface.csproj" Description="扫描完成: 项目文件不需要升级。">
+</Event></UpgradeLog>
