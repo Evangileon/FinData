@@ -29,7 +29,7 @@ namespace LuaInterface
             this.luaState = LuaJIT.luaL_newstate();
             LuaJIT.luaL_openlibs(this.luaState);
             LuaJIT.lua_pushstring(this.luaState, "LUAINTERFACE LOADED");
-            LuaJIT.lua_pushboolean(this.luaState, true);
+            LuaJIT.lua_pushboolean(this.luaState, 1);
             LuaJIT.lua_settable(this.luaState, -10000);
             LuaJIT.lua_newtable(this.luaState);
             LuaJIT.lua_setglobal(this.luaState, "luanet");
@@ -52,14 +52,14 @@ namespace LuaInterface
             IntPtr ptr = new IntPtr(luaState);
             LuaJIT.lua_pushstring(ptr, "LUAINTERFACE LOADED");
             LuaJIT.lua_gettable(ptr, -10000);
-            if (LuaJIT.lua_toboolean(ptr, -1))
+            if ((LuaJIT.lua_toboolean(ptr, -1) == 0 ? false : true))
             {
                 LuaJIT.lua_settop(ptr, -2);
                 throw new LuaException("There is already a LuaInterface.Lua instance associated with this Lua state");
             }
             LuaJIT.lua_settop(ptr, -2);
             LuaJIT.lua_pushstring(ptr, "LUAINTERFACE LOADED");
-            LuaJIT.lua_pushboolean(ptr, true);
+            LuaJIT.lua_pushboolean(ptr, 1);
             LuaJIT.lua_settable(ptr, -10000);
             this.luaState = ptr;
             LuaJIT.lua_pushvalue(ptr, -10002);
@@ -83,7 +83,7 @@ namespace LuaInterface
         {
             int nArgs = 0;
             int oldTop = LuaJIT.lua_gettop(this.luaState);
-            if (!LuaJIT.lua_checkstack(this.luaState, args.Length + 6))
+            if (!(LuaJIT.lua_checkstack(this.luaState, args.Length + 6) == 0 ? false : true))
             {
                 throw new LuaException("Lua stack overflow");
             }

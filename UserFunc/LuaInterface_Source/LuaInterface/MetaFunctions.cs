@@ -115,10 +115,10 @@ namespace LuaInterface
             int num = LuaJIT.lua_gettop(luaState);
             for (int i = 1; i <= num; i++)
             {
-                LuaTypes type = LuaJIT.lua_type(luaState, i);
+                LuaTypes type = (LuaTypes)LuaJIT.lua_type(luaState, i);
                 if (type != LuaTypes.LUA_TTABLE)
                 {
-                    LuaJIT.lua_typename(luaState, type);
+                    LuaJIT.lua_typename(luaState, (int)type);
                 }
                 LuaJIT.lua_tostring(luaState, i);
                 if (type == LuaTypes.LUA_TUSERDATA)
@@ -135,24 +135,24 @@ namespace LuaInterface
             {
                 this.translator.throwError(luaState, "trying to index an invalid object reference");
                 LuaJIT.lua_pushnil(luaState);
-                LuaJIT.lua_pushboolean(luaState, false);
+                LuaJIT.lua_pushboolean(luaState, 0);
                 return 2;
             }
             string methodName = LuaJIT.lua_tostring(luaState, 2);
             if (methodName == null)
             {
                 LuaJIT.lua_pushnil(luaState);
-                LuaJIT.lua_pushboolean(luaState, false);
+                LuaJIT.lua_pushboolean(luaState, 0);
                 return 2;
             }
             this.getMember(luaState, obj2.GetType(), obj2, "__luaInterface_base_" + methodName, BindingFlags.Instance | BindingFlags.IgnoreCase);
             LuaJIT.lua_settop(luaState, -2);
-            if (LuaJIT.lua_type(luaState, -1) == LuaTypes.LUA_TNIL)
+            if ((LuaTypes)LuaJIT.lua_type(luaState, -1) == LuaTypes.LUA_TNIL)
             {
                 LuaJIT.lua_settop(luaState, -2);
                 return this.getMember(luaState, obj2.GetType(), obj2, methodName, BindingFlags.Instance | BindingFlags.IgnoreCase);
             }
-            LuaJIT.lua_pushboolean(luaState, false);
+            LuaJIT.lua_pushboolean(luaState, 0);
             return 2;
         }
 
@@ -166,7 +166,7 @@ namespace LuaInterface
                 return 1;
             }
             IReflect objType = (IReflect) obj2;
-            if (LuaJIT.lua_isnumber(luaState, 2))
+            if (LuaJIT.lua_isnumber(luaState, 2) == 0 ? false : true)
             {
                 int length = (int) LuaJIT.lua_tonumber(luaState, 2);
                 this.translator.push(luaState, Array.CreateInstance(objType.UnderlyingSystemType, length));
@@ -369,7 +369,7 @@ namespace LuaInterface
                     }
                 }
             }
-            LuaJIT.lua_pushboolean(luaState, false);
+            LuaJIT.lua_pushboolean(luaState, 0);
             return 2;
         }
 
@@ -478,7 +478,7 @@ namespace LuaInterface
             {
                 try
                 {
-                    if (targetType.IsArray && LuaJIT.lua_isnumber(luaState, 2))
+                    if (targetType.IsArray && (LuaJIT.lua_isnumber(luaState, 2) == 0 ? false : true))
                     {
                         int index = (int) LuaJIT.lua_tonumber(luaState, 2);
                         Array array = (Array) target;
@@ -564,7 +564,7 @@ namespace LuaInterface
         private bool trySetMember(IntPtr luaState, IReflect targetType, object target, BindingFlags bindingType, out string detailMessage)
         {
             detailMessage = null;
-            if (LuaJIT.lua_type(luaState, 2) != LuaTypes.LUA_TSTRING)
+            if ((LuaTypes)LuaJIT.lua_type(luaState, 2) != LuaTypes.LUA_TSTRING)
             {
                 detailMessage = "property names must be strings";
                 return false;

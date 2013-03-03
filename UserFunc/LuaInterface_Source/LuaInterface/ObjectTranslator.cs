@@ -248,7 +248,7 @@ namespace LuaInterface
 
         internal object getObject(IntPtr luaState, int index)
         {
-            switch (LuaJIT.lua_type(luaState, index))
+            switch ((LuaTypes)LuaJIT.lua_type(luaState, index))
             {
                 case LuaTypes.LUA_TBOOLEAN:
                     return LuaJIT.lua_toboolean(luaState, index);
@@ -419,7 +419,7 @@ namespace LuaInterface
             else if (o is bool)
             {
                 bool flag = (bool) o;
-                LuaJIT.lua_pushboolean(luaState, flag);
+                LuaJIT.lua_pushboolean(luaState, flag == false ? 0 : 1);
             }
             else if (IsILua(o))
             {
@@ -505,7 +505,7 @@ namespace LuaInterface
                 {
                     LuaJIT.luaL_getmetatable(luaState, "luaNet_objects");
                     LuaJIT.lua_rawgeti(luaState, -1, num);
-                    if (LuaJIT.lua_type(luaState, -1) != LuaTypes.LUA_TNIL)
+                    if ((LuaTypes)LuaJIT.lua_type(luaState, -1) != LuaTypes.LUA_TNIL)
                     {
                         LuaJIT.lua_remove(luaState, -2);
                         return;
@@ -526,7 +526,7 @@ namespace LuaInterface
 
         private int registerTable(IntPtr luaState)
         {
-            if (LuaJIT.lua_type(luaState, 1) == LuaTypes.LUA_TTABLE)
+            if ((LuaTypes)LuaJIT.lua_type(luaState, 1) == LuaTypes.LUA_TTABLE)
             {
                 LuaTable luaTable = this.getTable(luaState, 1);
                 string className = LuaJIT.lua_tostring(luaState, 2);
@@ -569,7 +569,7 @@ namespace LuaInterface
 
         internal int returnValues(IntPtr luaState, object[] returnValues)
         {
-            if (!LuaJIT.lua_checkstack(luaState, returnValues.Length + 5))
+            if (!(LuaJIT.lua_checkstack(luaState, returnValues.Length + 5) == 0 ? false : true))
             {
                 return 0;
             }

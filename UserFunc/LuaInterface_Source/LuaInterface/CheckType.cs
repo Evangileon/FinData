@@ -37,7 +37,7 @@ namespace LuaInterface
 
         internal ExtractValue checkType(IntPtr luaState, int stackPos, Type paramType)
         {
-            LuaTypes types = LuaJIT.lua_type(luaState, stackPos);
+            LuaTypes types = (LuaTypes)LuaJIT.lua_type(luaState, stackPos);
             if (paramType.IsByRef)
             {
                 paramType = paramType.GetElementType();
@@ -52,20 +52,20 @@ namespace LuaInterface
             {
                 return this.extractValues[num];
             }
-            if (LuaJIT.lua_isnumber(luaState, stackPos))
+            if ((LuaJIT.lua_isnumber(luaState, stackPos) == 0 ? false : true))
             {
                 return this.extractValues[num];
             }
             if (paramType == typeof(bool))
             {
-                if (LuaJIT.lua_isboolean(luaState, stackPos))
+                if ((LuaJIT.lua_isboolean(luaState, stackPos) == 0 ? false : true))
                 {
                     return this.extractValues[num];
                 }
             }
             else if (paramType == typeof(string))
             {
-                if (LuaJIT.lua_isstring(luaState, stackPos))
+                if ((LuaJIT.lua_isstring(luaState, stackPos) == 0 ? false : true))
                 {
                     return this.extractValues[num];
                 }
@@ -109,9 +109,9 @@ namespace LuaInterface
                 {
                     return this.extractNetObject;
                 }
-                if (LuaJIT.lua_type(luaState, stackPos) == LuaTypes.LUA_TTABLE)
+                if ((LuaTypes)LuaJIT.lua_type(luaState, stackPos) == LuaTypes.LUA_TTABLE)
                 {
-                    if (!LuaJIT.luaL_getmetafield(luaState, stackPos, "__index"))
+                    if (!(LuaJIT.luaL_getmetafield(luaState, stackPos, "__index") == 0 ? false : true))
                     {
                         return null;
                     }
@@ -142,7 +142,7 @@ namespace LuaInterface
         private object getAsByte(IntPtr luaState, int stackPos)
         {
             byte num = (byte) LuaJIT.lua_tonumber(luaState, stackPos);
-            if ((num == 0) && !LuaJIT.lua_isnumber(luaState, stackPos))
+            if ((num == 0) && !(LuaJIT.lua_isnumber(luaState, stackPos) == 0 ? false : true))
             {
                 return null;
             }
@@ -152,7 +152,7 @@ namespace LuaInterface
         private object getAsChar(IntPtr luaState, int stackPos)
         {
             char ch = (char) ((ushort) LuaJIT.lua_tonumber(luaState, stackPos));
-            if ((ch == '\0') && !LuaJIT.lua_isnumber(luaState, stackPos))
+            if ((ch == '\0') && !(LuaJIT.lua_isnumber(luaState, stackPos) == 0 ? false : true))
             {
                 return null;
             }
@@ -162,7 +162,7 @@ namespace LuaInterface
         private object getAsDecimal(IntPtr luaState, int stackPos)
         {
             decimal num = (decimal) LuaJIT.lua_tonumber(luaState, stackPos);
-            if ((num == 0M) && !LuaJIT.lua_isnumber(luaState, stackPos))
+            if ((num == 0M) && !(LuaJIT.lua_isnumber(luaState, stackPos) == 0 ? false : true))
             {
                 return null;
             }
@@ -172,7 +172,7 @@ namespace LuaInterface
         private object getAsDouble(IntPtr luaState, int stackPos)
         {
             double num = LuaJIT.lua_tonumber(luaState, stackPos);
-            if ((num == 0.0) && !LuaJIT.lua_isnumber(luaState, stackPos))
+            if ((num == 0.0) && !(LuaJIT.lua_isnumber(luaState, stackPos) == 0 ? false : true))
             {
                 return null;
             }
@@ -182,7 +182,7 @@ namespace LuaInterface
         private object getAsFloat(IntPtr luaState, int stackPos)
         {
             float num = (float) LuaJIT.lua_tonumber(luaState, stackPos);
-            if ((num == 0f) && !LuaJIT.lua_isnumber(luaState, stackPos))
+            if ((num == 0f) && !(LuaJIT.lua_isnumber(luaState, stackPos) == 0 ? false : true))
             {
                 return null;
             }
@@ -197,7 +197,7 @@ namespace LuaInterface
         private object getAsInt(IntPtr luaState, int stackPos)
         {
             int num = (int) LuaJIT.lua_tonumber(luaState, stackPos);
-            if ((num == 0) && !LuaJIT.lua_isnumber(luaState, stackPos))
+            if ((num == 0) && !(LuaJIT.lua_isnumber(luaState, stackPos) == 0 ? false : true))
             {
                 return null;
             }
@@ -207,7 +207,7 @@ namespace LuaInterface
         private object getAsLong(IntPtr luaState, int stackPos)
         {
             long num = (long) LuaJIT.lua_tonumber(luaState, stackPos);
-            if ((num == 0L) && !LuaJIT.lua_isnumber(luaState, stackPos))
+            if ((num == 0L) && !(LuaJIT.lua_isnumber(luaState, stackPos) == 0 ? false : true))
             {
                 return null;
             }
@@ -217,7 +217,7 @@ namespace LuaInterface
         public object getAsNetObject(IntPtr luaState, int stackPos)
         {
             object obj2 = this.translator.getNetObject(luaState, stackPos);
-            if (((obj2 == null) && (LuaJIT.lua_type(luaState, stackPos) == LuaTypes.LUA_TTABLE)) && LuaJIT.luaL_getmetafield(luaState, stackPos, "__index"))
+            if (((obj2 == null) && ((LuaTypes)LuaJIT.lua_type(luaState, stackPos) == LuaTypes.LUA_TTABLE)) && LuaJIT.luaL_getmetafield(luaState, stackPos, "__index"))
             {
                 if (LuaJIT.luaL_checkmetatable(luaState, -1))
                 {
@@ -232,7 +232,7 @@ namespace LuaInterface
 
         public object getAsObject(IntPtr luaState, int stackPos)
         {
-            if ((LuaJIT.lua_type(luaState, stackPos) == LuaTypes.LUA_TTABLE) && LuaJIT.luaL_getmetafield(luaState, stackPos, "__index"))
+            if (((LuaTypes)LuaJIT.lua_type(luaState, stackPos) == LuaTypes.LUA_TTABLE) && LuaJIT.luaL_getmetafield(luaState, stackPos, "__index"))
             {
                 if (LuaJIT.luaL_checkmetatable(luaState, -1))
                 {
@@ -250,7 +250,7 @@ namespace LuaInterface
         private object getAsSbyte(IntPtr luaState, int stackPos)
         {
             sbyte num = (sbyte) LuaJIT.lua_tonumber(luaState, stackPos);
-            if ((num == 0) && !LuaJIT.lua_isnumber(luaState, stackPos))
+            if ((num == 0) && !(LuaJIT.lua_isnumber(luaState, stackPos) == 0 ? false : true))
             {
                 return null;
             }
@@ -260,7 +260,7 @@ namespace LuaInterface
         private object getAsShort(IntPtr luaState, int stackPos)
         {
             short num = (short) LuaJIT.lua_tonumber(luaState, stackPos);
-            if ((num == 0) && !LuaJIT.lua_isnumber(luaState, stackPos))
+            if ((num == 0) && !(LuaJIT.lua_isnumber(luaState, stackPos) == 0 ? false : true))
             {
                 return null;
             }
@@ -270,7 +270,7 @@ namespace LuaInterface
         private object getAsString(IntPtr luaState, int stackPos)
         {
             string str = LuaJIT.lua_tostring(luaState, stackPos);
-            if ((str == "") && !LuaJIT.lua_isstring(luaState, stackPos))
+            if ((str == "") && !(LuaJIT.lua_isstring(luaState, stackPos) == 0 ? false : true))
             {
                 return null;
             }
@@ -285,7 +285,7 @@ namespace LuaInterface
         private object getAsUint(IntPtr luaState, int stackPos)
         {
             uint num = (uint) LuaJIT.lua_tonumber(luaState, stackPos);
-            if ((num == 0) && !LuaJIT.lua_isnumber(luaState, stackPos))
+            if ((num == 0) && !(LuaJIT.lua_isnumber(luaState, stackPos) == 0 ? false : true))
             {
                 return null;
             }
@@ -295,7 +295,7 @@ namespace LuaInterface
         private object getAsUlong(IntPtr luaState, int stackPos)
         {
             ulong num = (ulong) LuaJIT.lua_tonumber(luaState, stackPos);
-            if ((num == 0L) && !LuaJIT.lua_isnumber(luaState, stackPos))
+            if ((num == 0L) && !(LuaJIT.lua_isnumber(luaState, stackPos) == 0 ? false : true))
             {
                 return null;
             }
@@ -310,7 +310,7 @@ namespace LuaInterface
         private object getAsUshort(IntPtr luaState, int stackPos)
         {
             ushort num = (ushort) LuaJIT.lua_tonumber(luaState, stackPos);
-            if ((num == 0) && !LuaJIT.lua_isnumber(luaState, stackPos))
+            if ((num == 0) && !(LuaJIT.lua_isnumber(luaState, stackPos) == 0 ? false : true))
             {
                 return null;
             }

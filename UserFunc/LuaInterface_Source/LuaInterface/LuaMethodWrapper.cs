@@ -58,7 +58,7 @@ namespace LuaInterface
             object obj2 = this._Target;
             bool flag = true;
             int num = 0;
-            if (!LuaJIT.lua_checkstack(luaState, 5))
+            if (!(LuaJIT.lua_checkstack(luaState, 5) == 0 ? false : true))
             {
                 throw new LuaException("Lua stack overflow");
             }
@@ -94,7 +94,7 @@ namespace LuaInterface
                     int num3 = LuaJIT.lua_gettop(luaState) - num2;
                     if (num3 == this._LastCalledMethod.argTypes.Length)
                     {
-                        if (!LuaJIT.lua_checkstack(luaState, this._LastCalledMethod.outList.Length + 6))
+                        if (!(LuaJIT.lua_checkstack(luaState, this._LastCalledMethod.outList.Length + 6) == 0 ? false : true))
                         {
                             throw new LuaException("Lua stack overflow");
                         }
@@ -170,7 +170,7 @@ namespace LuaInterface
             }
             if (flag)
             {
-                if (!LuaJIT.lua_checkstack(luaState, this._LastCalledMethod.outList.Length + 6))
+                if (!(LuaJIT.lua_checkstack(luaState, this._LastCalledMethod.outList.Length + 6) == 0 ? false : true))
                 {
                     throw new LuaException("Lua stack overflow");
                 }
