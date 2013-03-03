@@ -84,10 +84,6 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="lua51">
-      <Name>lua51</Name>
-      <HintPath>lua51.dll</HintPath>
-    </Reference>
     <Reference Include="mscorlib">
       <Name>mscorlib</Name>
       <HintPath>mscorlib.dll</HintPath>

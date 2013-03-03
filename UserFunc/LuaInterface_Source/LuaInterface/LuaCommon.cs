@@ -10,14 +10,14 @@ namespace LuaInterface
     using size_t_p = IntPtr;
     using lua_Number = Double;
     using lua_Integer = Int32;
-    
 
-	public class LuaCommon
-	{
+
+    public class LuaCommon
+    {
         #region 静态方法及常数
-      
 
-        public delegate int lua_CFunction(lua_StatePtr L);
+
+        //public delegate int lua_CFunction(lua_StatePtr L);
 
         /*
         ** functions that read/write blocks when loading/dumping Lua chunks
@@ -48,6 +48,22 @@ namespace LuaInterface
         public const int LUA_MINSTACK = 20;
 
         /*
+** pseudo-indices
+*/
+        public const int LUA_REGISTRYINDEX = (-10000);
+        public const int LUA_ENVIRONINDEX = (-10001);
+        public const int LUA_GLOBALSINDEX = (-10002);
+        public int lua_upvalueindex(int i) { return (LUA_GLOBALSINDEX - (i)); }
+
+
+        /* thread status; 0 is OK */
+        public const int LUA_YIELD = 1;
+        public const int LUA_ERRRUN = 2;
+        public const int LUA_ERRSYNTAX = 3;
+        public const int LUA_ERRMEM = 4;
+        public const int LUA_ERRERR = 5;
+
+        /*
         ** state manipulation
         */
         [DllImport("lua51.dll",
@@ -68,7 +84,7 @@ namespace LuaInterface
         [DllImport("lua51.dll",
             CharSet = CharSet.Auto,
             CallingConvention = CallingConvention.StdCall)]
-        public static extern lua_CFunction lua_atpanic(lua_StatePtr L, LuaCSFunction panicf);
+        public static extern LuaCSFunction lua_atpanic(lua_StatePtr L, LuaCSFunction panicf);
 
         /*
         ** basic stack manipulation
@@ -191,7 +207,7 @@ namespace LuaInterface
         [DllImport("lua51.dll",
             CharSet = CharSet.Auto,
             CallingConvention = CallingConvention.StdCall)]
-        public static extern lua_CFunction lua_tocfunction(lua_StatePtr L, int idx);
+        public static extern LuaCSFunction lua_tocfunction(lua_StatePtr L, int idx);
 
         [DllImport("lua51.dll",
             CharSet = CharSet.Auto,
@@ -252,7 +268,7 @@ namespace LuaInterface
         [DllImport("lua51.dll",
             CharSet = CharSet.Auto,
             CallingConvention = CallingConvention.StdCall)]
-        public static extern void lua_pushcclosure(lua_StatePtr L, lua_CFunction fn, int n);
+        public static extern void lua_pushcclosure(lua_StatePtr L, LuaCSFunction fn, int n);
 
         [DllImport("lua51.dll",
             CharSet = CharSet.Auto,
@@ -364,7 +380,7 @@ namespace LuaInterface
         [DllImport("lua51.dll",
             CharSet = CharSet.Auto,
             CallingConvention = CallingConvention.StdCall)]
-        public static extern int lua_cpcall(lua_StatePtr L, lua_CFunction func, IntPtr ud);
+        public static extern int lua_cpcall(lua_StatePtr L, LuaCSFunction func, IntPtr ud);
 
         [DllImport("lua51.dll",
             CharSet = CharSet.Auto,
@@ -441,6 +457,114 @@ namespace LuaInterface
             CharSet = CharSet.Auto,
             CallingConvention = CallingConvention.StdCall)]
         public static extern void lua_setallocf(lua_StatePtr L, lua_Alloc f, IntPtr ud);
+
+        /*
+        ** ===============================================================
+        ** some useful macros
+        ** ===============================================================
+        */
+
+        public static void lua_pop(lua_StatePtr L, size_t n) { lua_settop(L, -(n) - 1); }
+
+        public static void lua_newtable(lua_StatePtr L) { lua_createtable(L, 0, 0); }
+
+        public static void lua_register(lua_StatePtr L, string s, LuaCSFunction f)
+        {
+            lua_pushcfunction(L, (f));
+            lua_setglobal(L, (s));
+        }
+
+        public static void lua_pushcfunction(lua_StatePtr L, LuaCSFunction f) { lua_pushcclosure(L, (f), 0); }
+
+        public static lua_Integer lua_strlen(lua_StatePtr L, lua_Integer i) { return lua_objlen(L, (i)); }
+
+        public static bool lua_isfunction(lua_StatePtr L, lua_Integer n) { return lua_type(L, (n)) == LUA_TFUNCTION; }
+        public static bool lua_istable(lua_StatePtr L, lua_Integer n) { return (lua_type(L, (n)) == LUA_TTABLE); }
+        public static bool lua_islightuserdata(lua_StatePtr L, lua_Integer n) { return (lua_type(L, (n)) == LUA_TLIGHTUSERDATA); }
+        public static bool lua_isnil(lua_StatePtr L, lua_Integer n) { return (lua_type(L, (n)) == LUA_TNIL); }
+        public static bool lua_isboolean(lua_StatePtr L, lua_Integer n) { return (lua_type(L, (n)) == LUA_TBOOLEAN); }
+        public static bool lua_isthread(lua_StatePtr L, lua_Integer n) { return (lua_type(L, (n)) == LUA_TTHREAD); }
+        public static bool lua_isnone(lua_StatePtr L, lua_Integer n) { return (lua_type(L, (n)) == LUA_TNONE); }
+        public static bool lua_isnoneornil(lua_StatePtr L, lua_Integer n) { return (lua_type(L, (n)) <= 0); }
+
+        public static void lua_pushliteral(lua_StatePtr L, string s)
+        {
+            lua_pushlstring(L, "" + s, (s.Length / sizeof(char)) - 1);
+        }
+
+        public static void lua_setglobal(lua_StatePtr L, string s) { lua_setfield(L, LUA_GLOBALSINDEX, (s)); }
+        public static void lua_getglobal(lua_StatePtr L, string s) { lua_getfield(L, LUA_GLOBALSINDEX, (s)); }
+
+        public static string lua_tostring(lua_StatePtr L, lua_Integer i) { return lua_tolstring(L, (i), IntPtr.Zero); }
+
+
+
+        /*
+        ** compatibility macros and functions
+        */
+
+        //void lua_open()	{ return luaL_newstate();}
+
+        void lua_getregistry(lua_StatePtr L) { lua_pushvalue(L, LUA_REGISTRYINDEX); }
+
+        lua_Integer lua_getgccount(lua_StatePtr L) { return lua_gc(L, LUA_GCCOUNT, 0); }
+
+        [DllImport("lua51.dll",
+            CharSet = CharSet.Auto,
+            CallingConvention = CallingConvention.StdCall)]
+        public static extern int lua_getstack(lua_StatePtr L, int level, IntPtr ar);
+        
+        [DllImport("lua51.dll",
+            CharSet = CharSet.Auto,
+            CallingConvention = CallingConvention.StdCall)]
+        public static extern int lua_getinfo(lua_StatePtr L, string what, IntPtr ar);
+
+        [DllImport("lua51.dll",
+            CharSet = CharSet.Auto,
+            CallingConvention = CallingConvention.StdCall)]
+        public static extern string lua_getlocal(lua_StatePtr L, IntPtr ar, int n);
+
+        [DllImport("lua51.dll",
+            CharSet = CharSet.Auto,
+            CallingConvention = CallingConvention.StdCall)]
+        public static extern string lua_setlocal(lua_StatePtr L, IntPtr ar, int n);
+
+        [DllImport("lua51.dll",
+            CharSet = CharSet.Auto,
+            CallingConvention = CallingConvention.StdCall)]
+        public static extern string lua_getupvalue(lua_StatePtr L, int funcindex, int n);
+
+        [DllImport("lua51.dll",
+            CharSet = CharSet.Auto,
+            CallingConvention = CallingConvention.StdCall)]
+        public static extern string lua_setupvalue(lua_StatePtr L, int funcindex, int n);
+
+        [DllImport("lua51.dll",
+            CharSet = CharSet.Auto,
+            CallingConvention = CallingConvention.StdCall)]
+        public static extern int lua_sethook(lua_StatePtr L, LuaHookFunction func, int mask, int count);
+
+        [DllImport("lua51.dll",
+            CharSet = CharSet.Auto,
+            CallingConvention = CallingConvention.StdCall)]
+        public static extern LuaHookFunction lua_gethook(lua_StatePtr L);
+
+        [DllImport("lua51.dll",
+            CharSet = CharSet.Auto,
+            CallingConvention = CallingConvention.StdCall)]
+        public static extern int lua_gethookmask(lua_StatePtr L);
+
+        [DllImport("lua51.dll",
+            CharSet = CharSet.Auto,
+            CallingConvention = CallingConvention.StdCall)]
+        public static extern int lua_gethookcount(lua_StatePtr L);
+
+        /* From Lua 5.2. */
+        /*
+        LUA_API void *lua_upvalueid (lua_State *L, int idx, int n);
+        LUA_API void lua_upvaluejoin (lua_State *L, int idx1, int n1, int idx2, int n2);
+        LUA_API int lua_loadx (lua_State *L, lua_Reader reader, void *dt,
+               const char *chunkname, const char *mode);*/
         #endregion 静态方法及常数
-	}
+    }
 }
