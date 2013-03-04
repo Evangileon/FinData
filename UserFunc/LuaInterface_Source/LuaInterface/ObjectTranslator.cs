@@ -325,7 +325,7 @@ namespace LuaInterface
             string partialName = LuaJIT.lua_tostring(luaState, 1);
             try
             {
-                Assembly item = Assembly.LoadWithPartialName(partialName);
+                Assembly item = Assembly.Load(partialName);     //Assembly.LoadWithPartialName(partialName);
                 try
                 {
                     if (item == null)
@@ -453,7 +453,7 @@ namespace LuaInterface
             if (metatable == "luaNet_metatable")
             {
                 LuaJIT.luaL_getmetatable(luaState, o.GetType().AssemblyQualifiedName);
-                if (LuaJIT.lua_isnil(luaState, -1))
+                if (LuaJIT.lua_isnil(luaState, -1) == 0 ? false : true)
                 {
                     LuaJIT.lua_settop(luaState, -2);
                     LuaJIT.luaL_newmetatable(luaState, o.GetType().AssemblyQualifiedName);

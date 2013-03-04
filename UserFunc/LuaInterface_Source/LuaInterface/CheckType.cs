@@ -217,9 +217,9 @@ namespace LuaInterface
         public object getAsNetObject(IntPtr luaState, int stackPos)
         {
             object obj2 = this.translator.getNetObject(luaState, stackPos);
-            if (((obj2 == null) && ((LuaTypes)LuaJIT.lua_type(luaState, stackPos) == LuaTypes.LUA_TTABLE)) && LuaJIT.luaL_getmetafield(luaState, stackPos, "__index"))
+            if (((obj2 == null) && ((LuaTypes)LuaJIT.lua_type(luaState, stackPos) == LuaTypes.LUA_TTABLE)) && (LuaJIT.luaL_getmetafield(luaState, stackPos, "__index") == 0 ? false : true))
             {
-                if (LuaJIT.luaL_checkmetatable(luaState, -1))
+                if (LuaJIT.luaL_checkmetatable(luaState, -1) != 0)
                 {
                     LuaJIT.lua_insert(luaState, stackPos);
                     LuaJIT.lua_remove(luaState, stackPos + 1);
@@ -232,9 +232,9 @@ namespace LuaInterface
 
         public object getAsObject(IntPtr luaState, int stackPos)
         {
-            if (((LuaTypes)LuaJIT.lua_type(luaState, stackPos) == LuaTypes.LUA_TTABLE) && LuaJIT.luaL_getmetafield(luaState, stackPos, "__index"))
+            if (((LuaTypes)LuaJIT.lua_type(luaState, stackPos) == LuaTypes.LUA_TTABLE) && (LuaJIT.luaL_getmetafield(luaState, stackPos, "__index") == 0 ? false : true))
             {
-                if (LuaJIT.luaL_checkmetatable(luaState, -1))
+                if (LuaJIT.luaL_checkmetatable(luaState, -1) != 0)
                 {
                     LuaJIT.lua_insert(luaState, stackPos);
                     LuaJIT.lua_remove(luaState, stackPos + 1);

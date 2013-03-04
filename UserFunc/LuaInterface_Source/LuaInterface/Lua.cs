@@ -6,7 +6,7 @@ namespace LuaInterface
     using System.Reflection;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
-
+    
     public class Lua : IDisposable
     {
         private bool _StatePassed;
@@ -183,7 +183,7 @@ namespace LuaInterface
         public object[] DoString(string chunk)
         {
             int oldTop = LuaJIT.lua_gettop(this.luaState);
-            if (LuaJIT.luaL_loadbuffer(this.luaState, chunk, "chunk") == 0)
+            if (LuaJIT.luaL_loadbuffer(this.luaState, chunk, chunk.Length, "chunk") == 0)
             {
                 if (LuaJIT.lua_pcall(this.luaState, 0, -1, 0) == 0)
                 {
@@ -201,7 +201,7 @@ namespace LuaInterface
         public object[] DoString(string chunk, string chunkName)
         {
             int oldTop = LuaJIT.lua_gettop(this.luaState);
-            if (LuaJIT.luaL_loadbuffer(this.luaState, chunk, chunkName) == 0)
+            if (LuaJIT.luaL_loadbuffer(this.luaState, chunk, chunk.Length, chunkName) == 0)
             {
                 if (LuaJIT.lua_pcall(this.luaState, 0, -1, 0) == 0)
                 {
@@ -381,7 +381,7 @@ namespace LuaInterface
         public LuaFunction LoadString(string chunk, string name)
         {
             int oldTop = LuaJIT.lua_gettop(this.luaState);
-            if (LuaJIT.luaL_loadbuffer(this.luaState, chunk, name) != 0)
+            if (LuaJIT.luaL_loadbuffer(this.luaState, chunk, chunk.Length, name) != 0)
             {
                 this.ThrowExceptionFromError(oldTop);
             }

@@ -5,5 +5,6 @@
 [assembly: System.Reflection.AssemblyDescription("Bridge between the Lua runtime and the CLR")]
 [assembly: System.Diagnostics.Debuggable(System.Diagnostics.DebuggableAttribute.DebuggingModes.IgnoreSymbolStoreSequencePoints)]
 [assembly: System.Runtime.CompilerServices.CompilationRelaxations(8)]
-[assembly: System.Reflection.AssemblyCopyright("Copyright 2003-2008 Fabio Mascarenhas, Kevin Hester")]
-
+[assembly: System.Reflection.AssemblyCopyright("Copyright 2003-2013 Yu Jun, Eageon Junius")]
+[assembly: System.Runtime.CompilerServices.SuppressIldasm()]
+//[module: LuaInterface

@@ -103,7 +103,7 @@ namespace LuaInterface
                             for (int j = 0; j < this._LastCalledMethod.argTypes.Length; j++)
                             {
                                 this._LastCalledMethod.args[this._LastCalledMethod.argTypes[j].index] = this._LastCalledMethod.argTypes[j].extractValue(luaState, (j + 1) + num2);
-                                if ((this._LastCalledMethod.args[this._LastCalledMethod.argTypes[j].index] == null) && !LuaJIT.lua_isnil(luaState, (j + 1) + num2))
+                                if ((this._LastCalledMethod.args[this._LastCalledMethod.argTypes[j].index] == null) && !(LuaJIT.lua_isnil(luaState, (j + 1) + num2) == 0 ? false : true))
                                 {
                                     throw new LuaException("argument number " + (j + 1) + " is invalid");
                                 }
